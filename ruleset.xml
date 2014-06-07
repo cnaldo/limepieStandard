@@ -93,10 +93,6 @@
 <rule ref="Squiz.WhiteSpace.PropertyLabelSpacing"/>
 <rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
 <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
-    <properties>
-        <property name="ignoreBlankLines" value="true"/>
-    </properties>
 <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
 
 <rule ref="Zend.Files.ClosingTag"/>
@@ -112,6 +108,10 @@
 <rule ref="LimepieStandard.Strings.DoubleQuoteUsage"/>
 <rule ref="LimepieStandard.ControlStructures.ControlSignature"/>
 <rule ref="LimepieStandard.WhiteSpace.ControlStructureSpacing"/>
+<rule ref="LimepieStandard.WhiteSpace.SuperfluousWhitespace"/>
+    <properties>
+        <property name="ignoreBlankLines" value="true"/>
+    </properties>
 
 
 </ruleset>

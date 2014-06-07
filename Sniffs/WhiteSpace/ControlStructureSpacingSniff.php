@@ -53,7 +53,6 @@ class LimepieStandard_Sniffs_WhiteSpace_ControlStructureSpacingSniff implements 
     {
         $tokens = $phpcsFile->getTokens();
 
-
 if(isset($tokens[$stackPtr]['scope_closer']) == false) {
    // pr($tokens[$stackPtr]);
     return;
@@ -64,7 +63,7 @@ $prev = $phpcsFile->findPrevious(
     null,
     true
 );
-
+ 
 $prevSpace = $phpcsFile->findNext(
     T_WHITESPACE,
     ($stackPtr),
