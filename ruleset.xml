@@ -50,7 +50,13 @@
 <rule ref="Generic.PHP.NoSilencedErrors"/>
 
 <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
-<rule ref="Generic.WhiteSpace.ScopeIndent"/>
+<rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+        <property name="indent" value="4"/>
+    </properties>
+</rule>
+
+
 <rule ref="MySource.PHP.EvalObjectFactory"/>
 <rule ref="MySource.PHP.GetRequestData"/>
 
@@ -78,12 +84,18 @@
 <rule ref="Squiz.Scope.MemberVarScope"/>
 <rule ref="Squiz.Scope.StaticThisUsage"/>
 
-<rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace"/>
 <rule ref="Squiz.WhiteSpace.FunctionSpacing">
     <properties>
         <property name="spacing" value="1"/>
     </properties>
 </rule>
+
+<rule ref="Generic.Formatting.MultipleStatementAlignment">
+    <properties>
+        <property name="maxPadding" value="10010"/>
+    </properties>
+</rule>
+
 <rule ref="Squiz.WhiteSpace.CastSpacing"/>
 <rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
@@ -95,6 +107,9 @@
 <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
 
+
+<rule ref="Squiz.Arrays.ArrayDeclaration"/>
+
 <rule ref="Zend.Files.ClosingTag"/>
 <rule ref="Zend.NamingConventions.ValidVariableName"/>
 
@@ -104,6 +119,8 @@
 <rule ref="LimepieStandard.Namespaces.NamespaceDeclaration"/>
 <rule ref="LimepieStandard.Namespaces.UseDeclaration"/>
 <rule ref="LimepieStandard.WhiteSpace.FunctionOpeningBraceSpace1"/>
+<rule ref="LimepieStandard.WhiteSpace.FunctionClosingBraceSpace"/>
+
 <rule ref="LimepieStandard.Scope.MethodScope"/>
 <rule ref="LimepieStandard.Strings.DoubleQuoteUsage"/>
 <rule ref="LimepieStandard.ControlStructures.ControlSignature"/>

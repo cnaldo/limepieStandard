@@ -86,6 +86,8 @@ class LimepieStandard_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PH
 
 
 
+$orgStackPtr = $stackPtr;
+
 if(isset($tokens[$stackPtr-1]['code'])) {
 
         $lastLine = $tokens[$stackPtr]['line'];
@@ -95,15 +97,21 @@ if(isset($tokens[$stackPtr-1]['code'])) {
 
         $lastCodeLine = $tokens[$stackPtr]['line'];
         $blankLines   = ($lastLine - $lastCodeLine);
-        if ($blankLines == 3) {
-$next  = $phpcsFile->findNext(T_WHITESPACE, $stackPtr+1, null, true);
-$c = $tokens[$next]['line'] - $lastCodeLine -1;
+
+        $prev  = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr-1, null, true);
+        
+        $next  = $phpcsFile->findNext(T_WHITESPACE, $prev+1, null, true);
+        $c = $tokens[$next]['line'] - $tokens[$stackPtr-1]['line'] -1;
+
+        if (($c > 1) && $orgStackPtr == $stackPtr ) {
 
             $error = 'Expected 1 blank line at end of file; %s found';
             $data  = array($c);
-            $phpcsFile->addError($error, $stackPtr, 'TooMany2', $data);
+            $phpcsFile->addError($error, $next, 'TooMany21', $data);
         }
 }
+
+$stackPtr = $orgStackPtr;
         if ($tokens[$stackPtr]['code'] === T_OPEN_TAG) {
             /*
                 Check for start of file whitespace.
@@ -263,7 +271,8 @@ $c = $tokens[$next]['line'] - $lastCodeLine -1;
                         $error = 'Functions must not contain multiple empty lines in a row; found %s empty lines';
                         $data  = array($lines);
 
-                        $fix = $phpcsFile->addFixableError($error, $stackPtr, 'EmptyLines', $data);
+                        $fix = true;//$phpcsFile->addFixableError($error, $stackPtr, 'EmptyLines', $data);
+                      // del
                         if ($fix === true && $phpcsFile->fixer->enabled === true) {
                             $phpcsFile->fixer->beginChangeset();
                             $i = $stackPtr;

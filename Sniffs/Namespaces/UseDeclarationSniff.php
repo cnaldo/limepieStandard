@@ -70,7 +70,8 @@ class LimepieStandard_Sniffs_Namespaces_UseDeclarationSniff implements PHP_CodeS
         if ($blankLines > 2) {
             $error = 'Expected 1 blank line at end of file; %s found';
             $data  = array($blankLines - 1);
-            $phpcsFile->addError($error, $stackPtr, 'TooMany', $data);
+          //  $phpcsFile->addError($error, $stackPtr, 'TooMany', $data);
+            // del
         }
 
     

@@ -24,7 +24,7 @@ class LimepieStandard_Sniffs_WhiteSpace_FunctionOpeningBraceSpace1Sniff implemen
      */
     public function register()
     {
-        return array(T_FUNCTION);
+        return array(T_FUNCTION, T_CLOSURE);
 
     }//end register()
 
@@ -41,7 +41,6 @@ class LimepieStandard_Sniffs_WhiteSpace_FunctionOpeningBraceSpace1Sniff implemen
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-
         if (isset($tokens[$stackPtr]['scope_opener']) === false) {
             // Probably an interface method.
             return;
@@ -49,7 +48,6 @@ class LimepieStandard_Sniffs_WhiteSpace_FunctionOpeningBraceSpace1Sniff implemen
 
         $openBrace   = $tokens[$stackPtr]['scope_opener'];
         $nextContent = $phpcsFile->findNext(T_WHITESPACE, ($openBrace + 1), null, true);
-
         if ($nextContent === $tokens[$stackPtr]['scope_closer']) {
              // The next bit of content is the closing brace, so this
              // is an empty function and should have a blank line
@@ -57,10 +55,13 @@ class LimepieStandard_Sniffs_WhiteSpace_FunctionOpeningBraceSpace1Sniff implemen
             return;
         }
 
+
         $braceLine = $tokens[$openBrace]['line'];
         $nextLine  = $tokens[$nextContent]['line'];
 
+
         $found = ($nextLine - $braceLine - 1); // 1이면 하나가 있다.
+
         if ($found == 1) {
         } else {
             $error = 'Expected 1 blank lines after opening function brace; %s found';
