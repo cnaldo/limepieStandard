@@ -29,6 +29,7 @@ class LimepieStandard_Sniffs_Namespaces_UseDeclarationSniff implements PHP_CodeS
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
+
         if ($this->_shouldIgnoreUse($phpcsFile, $stackPtr) === true) {
             return;
         }

@@ -63,7 +63,7 @@ class LimepieStandard_Sniffs_WhiteSpace_FunctionOpeningBraceSpace1Sniff implemen
         $found = ($nextLine - $braceLine - 1); // 1이면 하나가 있다.
 
         if ($found == 1) {
-        } else {
+        } else if($found == 0){ // 0일때만 오류를 내야 linespace와 충돌하지 않는다.
             $error = 'Expected 1 blank lines after opening function brace; %s found';
             $data  = array($found);
             $phpcsFile->addError($error, $openBrace, 'SpacingAfter', $data);

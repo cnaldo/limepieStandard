@@ -69,8 +69,8 @@ $orgStackPtr = $stackPtr;
 if(isset($tokens[$stackPtr+1]['code'])) {
 /*안쪽공백라인*/
     if(in_array($tokens[$stackPtr]['type'], array(
-        'T_CATCH',
-        'T_TRY',
+       // 'T_CATCH',
+        //'T_TRY',
         //'T_IF',
         //'T_ELSE',
         //'T_ELSEIF', 
@@ -104,7 +104,7 @@ if(isset($tokens[$stackPtr+1]['code'])) {
             if($closeNum == 1) {
                 $error = 'Expected 1 blank line at end of file; %s found';
                 $data  = array($closeNum);
-                $phpcsFile->addError($error, $close, 'TooMany26', $data);
+                $phpcsFile->addError($error, $close, 'TooMany26q', $data);
             }
 
     }

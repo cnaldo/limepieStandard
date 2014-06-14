@@ -1,35 +1,6 @@
 <?php
-/**
- * LimepieStandard_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff.
- *
- * PHP version 5
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@LimepieStandard.net>
- * @author    Marc McIntyre <mmcintyre@LimepieStandard.net>
- * @copyright 2006-2014 LimepieStandard Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/LimepieStandardlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
 
-/**
- * LimepieStandard_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff.
- *
- * Checks that no whitespace proceeds the first content of the file, exists
- * after the last content of the file, resides after content on any line, or
- * are two empty lines in functions.
- *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@LimepieStandard.net>
- * @author    Marc McIntyre <mmcintyre@LimepieStandard.net>
- * @copyright 2006-2014 LimepieStandard Pty Ltd (ABN 77 084 670 600)
- * @license   https://github.com/LimepieStandardlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
- * @version   Release: 2.0.0a2
- * @link      http://pear.php.net/package/PHP_CodeSniffer
- */
-class LimepieStandard_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PHP_CodeSniffer_Sniff
+class LimepieStandard_Sniffs_WhiteSpace_LineSpace1Sniff implements PHP_CodeSniffer_Sniff
 {
 
     /**
@@ -84,34 +55,6 @@ class LimepieStandard_Sniffs_WhiteSpace_SuperfluousWhitespaceSniff implements PH
     {
         $tokens = $phpcsFile->getTokens();
 
-
-
-$orgStackPtr = $stackPtr;
-/*
-if(isset($tokens[$stackPtr-1]['code'])) {
-
-        $lastLine = $tokens[$stackPtr]['line'];
-        while ($tokens[$stackPtr-1]['code'] === T_WHITESPACE) {
-             $stackPtr--;
-        }
-
-        $lastCodeLine = $tokens[$stackPtr]['line'];
-        $blankLines   = ($lastLine - $lastCodeLine);
-
-        $prev  = $phpcsFile->findPrevious(T_WHITESPACE, $stackPtr-1, null, true);
-        
-        $next  = $phpcsFile->findNext(T_WHITESPACE, $prev+1, null, true);
-        $c = $tokens[$next]['line'] - $tokens[$stackPtr-1]['line'] -1;
-
-        if (($c > 1) && $orgStackPtr == $stackPtr ) {
-
-            $error = 'Expected 1 blank line at end of file; %s found';
-            $data  = array($c);
-            $phpcsFile->addError($error, $next, 'TooMany21', $data);
-        }
-}
-*/
-$stackPtr = $orgStackPtr;
         if ($tokens[$stackPtr]['code'] === T_OPEN_TAG) {
             /*
                 Check for start of file whitespace.
@@ -271,8 +214,7 @@ $stackPtr = $orgStackPtr;
                         $error = 'Functions must not contain multiple empty lines in a row; found %s empty lines';
                         $data  = array($lines);
 
-                        $fix = true;//$phpcsFile->addFixableError($error, $stackPtr, 'EmptyLines', $data);
-                      // del
+                        $fix = $phpcsFile->addFixableError($error, $stackPtr, 'EmptyLines', $data);
                         if ($fix === true && $phpcsFile->fixer->enabled === true) {
                             $phpcsFile->fixer->beginChangeset();
                             $i = $stackPtr;

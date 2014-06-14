@@ -108,7 +108,6 @@
 <rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
 
 
-<rule ref="Squiz.Arrays.ArrayDeclaration"/>
 
 <rule ref="Zend.Files.ClosingTag"/>
 <rule ref="Zend.NamingConventions.ValidVariableName"/>
